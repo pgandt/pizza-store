@@ -1,0 +1,54 @@
+body
+{
+  width:64em;
+  background-color:#EEEEEE;
+  font-family:Arial, Helvetica, sans-serif;
+  margin:auto;
+}
+nav
+{
+  display:table;
+  table-layout:fixed;
+  width:100%;
+  background-color:#FFFFFF;
+  padding:0.75em 0.5em;
+  margin:0.625em auto 0.313em;
+}
+
+nav ul {display:table-row;}
+
+nav ul li
+{
+  display:table-cell;
+  text-align:center;
+}
+
+#maps{
+  float: right;
+}
+
+#userDetails{
+  float:left;
+}
+
+img{
+    height: 600px;
+    width:700px;
+}
+a {text-decoration:none;}
+
+a:link, a:visited {color:#FF0000;}
+
+a.current {color:#007700;}
+
+a:hover {color:#0000FF;}
+
+video{
+    align-items: center;
+    height: 500px;
+    width: 100%;
+}
+
+#btngroup{
+  margin-top: 15px;
+}

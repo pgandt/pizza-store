@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    <title>Build Your Own Pizza</title>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Donny's Pizza</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="gallery.html">Pizza Gallery</a></li>
+            <li><a class="current" href="byo.html">Build Your Own</a></li>
+            <li><a href="order.html">Order</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        <header>
+            <h2> Build Your Own Pizza</h2>
+        </header>
+        <section>
+            <form id="orderPizzaForm">
+                <fieldset>
+                    <legend>Pizza Size and Crust</legend>
+                    <div style="display:inline">
+                        <label for="pizzaSize">Select your Pizza Size:
+                       <select id="pizzaSize">
+                        <option value="medium">Medium</option>
+                        <option value="large">Large</option>
+                        <option value="extralarge">Extra Large</option>
+                        </select>
+                    </div>
+                    <div id="crustSize" style="display:inline-block; margin-left:40px;">
+                        <label for="crustSize"> Thin Crust: - </label>
+                        <input type="radio" name="crust"  id="sizeThin" value="thin crust" checked>&nbsp;
+                        <label for="crustSize"> Regular Crust: - </label>
+                        <input type="radio" name="crust" id="sizeRegular" value="regular crust">
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Cheese</legend>
+                    <div style="display:inline-block; margin-left:40px;">
+                        <label for="cheeseType"> Mozarella: - </label>
+                        <input type="radio" name="cheeseType" id="mozarellaCheese" value="Mozarella" checked> &nbsp;
+                        <label for="cheeseType"> Feta: - </label>
+                        <input type="radio" name="cheeseType" id="fetaCheese" value="Feta"> &nbsp;
+                        <label for="cheeseType"> Reduced Fat: - </label>
+                        <input type="radio" name="cheeseType" id="reducedFatCheese" value="Reduced Fat">
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Choose your toppings</legend>
+                    <div>
+                        <input class="messageCheckbox" type="checkbox" id="anchovies" name="toppings" value="anchovies">
+                        <label for="anchovies">Anchovies</label>
+                    </div>
+                    <div>
+                        <input class="messageCheckbox" type="checkbox" id="bacon" name="toppings" value="bacon">
+                        <label for="bacon">Bacon</label>
+                    </div>
+                    <div>
+                        <input class="messageCheckbox" type="checkbox" id="onions" name="toppings" value="onions">
+                        <label for="onions">Onions</label>
+                    </div>
+                    <div>
+                        <input class="messageCheckbox"  type="checkbox" id="garlic" name="toppings" value="garlic">
+                        <label for="garlic">Garlic</label>
+                    </div>
+                    <div>
+                        <input class="messageCheckbox"  type="checkbox" id="mushrooms" name="toppings" value="mushrooms">
+                        <label for="mushrooms">Mushrooms</label>
+                    </div>
+                    <div>
+                        <input class="messageCheckbox"  type="checkbox" id="peppers" name="toppings" value="peppers">
+                        <label for="peppers">Peppers</label>
+                    </div>
+                </fieldset>
+                <div style="margin-top:40px">
+                <input id="submitButton" type="button" class="button" value="Submit" />
+                </div>
+            </form>
+        </section> 
+        </div>
+        <script>
+
+            window.onload=function(){
+                document.getElementById("submitButton").addEventListener('click', function () {
+
+                 sessionStorage.clear();   
+                //getting pizza size
+                var pizzaSize = document.getElementById('pizzaSize').value;
+                 sessionStorage.setItem('pizzasize',pizzaSize);
+
+                //getting crust size
+                if (document.getElementById('sizeThin').checked) {
+                    var crust = document.getElementById('sizeThin').value;
+                     sessionStorage.setItem('crustsize',crust);
+                }
+                else {
+                    crust = document.getElementById('sizeRegular').value;
+                    sessionStorage.setItem('crustsize',crust);
+                    }
+
+                //getting cheese    
+                    if (document.getElementById('mozarellaCheese').checked) {
+                    var cheese = document.getElementById('mozarellaCheese').value;
+                    sessionStorage.setItem('cheese',cheese);
+                }
+                else if(document.getElementById('fetaCheese').checked) {
+                    cheese = document.getElementById('fetaCheese').value;
+                    sessionStorage.setItem('cheese',cheese);
+                }
+                else{
+                    cheese = document.getElementById('reducedFatCheese').value;
+                    sessionStorage.setItem('cheese',cheese);
+                }
+
+                //getting toppings
+                var checkedValue = [];
+                    var inputElements = document.getElementsByClassName('messageCheckbox');
+                    for (var i = 0; inputElements[i]; i++) {
+                        if (inputElements[i].checked) {
+                            checkedValue.push (inputElements[i].value);
+                        }
+                }
+                sessionStorage.setItem('toppings',checkedValue);
+
+                if(sessionStorage){
+                    window.location='./order.html';
+                }
+
+             });
+            }
+        </script>
+</body>
+
+</html>
